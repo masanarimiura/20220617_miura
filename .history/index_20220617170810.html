@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+  <!-- 切り替えタブ -->
+  <div id="tab">
+    <ul class="tab-menu">
+      <li class="tab-menu__item active">タブ1</li>
+      <li class="tab-menu__item">タブ2</li>
+      <li class="tab-menu__item">タブ3</li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-content__item show">コンテンツ1</div>
+      <div class="tab-content__item">コンテンツ2</div>
+      <div class="tab-content__item">コンテンツ3</div>
+    </div>
+  </div>
+
+  <div id="app">
+    <a v-bind:class="customClassName">text</a>
+    <button v-on:click="changeClassName">クラス名変更</button>
+  </div>
+  <script>
+    const vm = new Vue({
+      el: '#tab',
+      data() {
+        return {
+          customClassName: null,
+        }
+      },
+      methods: {
+        changeClassName() {
+          this.customClassName = 'bigFont';
+        }
+      }
+    });
+  </script>
+  <style>
+    .tab {
+      width: 500px;
+    }
+
+    .tab-menu {
+      display: flex;
+    }
+
+    .tab-menu__item {
+      text-align: center;
+      padding: 10px 0;
+      cursor: pointer;
+      list-style: none;
+      width: 100px;
+      border-top: 1px solid #000;
+      border-left: 1px solid #000;
+      border-right: 1px solid #000;
+    }
+
+    .tab-menu__item:not(:first-child) {
+      border-left: none;
+    }
+
+    .tab-menu__item.active {
+      background: #000;
+      color: white;
+    }
+
+    .tab-content {
+      height: 200px;
+      border: 1px solid #000;
+    }
+
+    .tab-content__item {
+      display: none;
+      font-size: 40px;
+    }
+
+    .tab-content__item.show {
+      display: block;
+    }
+  </style>
+</body>
+
+</html>
